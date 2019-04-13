@@ -1,0 +1,76 @@
+#include <iostream>
+using namespace std;
+
+struct node{
+int data;
+node *next;	
+};
+
+node *terdepan = NULL;
+
+void push (float isi){
+	node *baru = new node;
+	baru -> data = isi;
+	baru -> next = terdepan;
+	terdepan = baru;
+}
+
+void pop (){
+	node *copot;
+	if (terdepan == 0){
+		return ;
+	}
+	copot = terdepan;
+	terdepan = terdepan -> next;
+	delete copot;
+}
+
+bool isempty (){
+	if (terdepan == NULL){
+		return 0;
+	}
+	
+	else {
+		return 1;
+	}
+	
+}
+
+void print (){
+	node *bantu = terdepan;
+	if (isempty () != 0){
+		while (bantu != NULL){
+		cout<< bantu ->data <<" ";
+		bantu = bantu ->next;
+		}
+	}
+	
+	else{
+		cout<<"Tidak ada stack \n";
+		
+	}
+}
+
+int main (){
+	float isi;
+	int jml;
+	cout<<"Berapa jumlah nilai yang ingin anda masukan untuk dijadikan Stack ? ";
+	cin>>jml;
+	for (int i=1;i<=jml;i++){
+		cout<<"Masukan nilai ke "<<i<<" : ";
+		cin>>isi;
+		push (isi);
+	}
+	cout<<endl;
+	print ();
+	cout<<"\n\nBerapa kali Pop yang akan dilakukan ? ";
+	cin>>jml;
+	for (int j=1;j<=jml;j++){
+		pop ();
+	}
+	cout<<"\nStack yang tersisa setelah Pop : \n"<<endl;
+	print ();
+
+	
+	return 0;
+}
